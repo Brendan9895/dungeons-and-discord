@@ -18,6 +18,16 @@ namespace dungeons_and_discord.Handlers
             return embed;
         }
 
+        public static async Task<Embed> CreateDiceRollerEmbed(string title, string description, Color color)
+        {
+            var embed = await Task.Run(() => (new EmbedBuilder()
+            .WithTitle(title)
+            .WithDescription(description)
+            .WithColor(color)
+            .WithCurrentTimestamp().Build()));
+            return embed;
+        }
+
         public static async Task<Embed> CreateErrorEmbed(string source, string error)
         {
             var embed = await Task.Run(() => new EmbedBuilder()
