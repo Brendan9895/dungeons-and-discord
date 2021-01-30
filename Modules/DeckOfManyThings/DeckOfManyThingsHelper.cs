@@ -60,7 +60,7 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
             DeckOfManyThingsFunctions functions = new DeckOfManyThingsFunctions();
             var message = new StringBuilder();
 
-            functions.CardName = args.ToLower();
+            functions.CardName = args;
             KeyValuePair<string, string>? definition = functions.GetCardDefinitionByName();
 
             if (string.IsNullOrEmpty(definition.Value.Key))

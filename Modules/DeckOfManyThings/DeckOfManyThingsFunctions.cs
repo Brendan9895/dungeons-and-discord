@@ -10,7 +10,7 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
     public class DeckOfManyThingsFunctions
     {
         public int CardId { get; set; }
-        public string CardName { get; set; }
+        public string CardName { get; set; } = string.Empty;
         public string Description { get; set; }
         public bool UseExpandedDeck { get; set; }
         
@@ -38,8 +38,8 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
 
             var cardDefinition = KeyValuePair
                 .Create(
-                    Cards.Where(c => c.CardName.ToLower() == CardName).Select(c => c.CardName).FirstOrDefault(),
-                    Cards.Where(c => c.CardName.ToLower() == CardName).Select(c => c.Definition).FirstOrDefault()
+                    Cards.Where(c => c.CardName.ToLower() == CardName.ToLower()).Select(c => c.CardName).FirstOrDefault() ?? "No card found",
+                    Cards.Where(c => c.CardName.ToLower() == CardName.ToLower()).Select(c => c.Definition).FirstOrDefault() ?? "No card description found"
                  );
 
             return cardDefinition;
