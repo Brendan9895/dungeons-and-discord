@@ -7,10 +7,10 @@ namespace dungeons_and_discord.Modules.DiceRoller
 {
     public class DiceRollerFunctions
     {
-        public int DiceCount { get; set; }
+        public int DiceCount { get; set; } = 1;
         public int NumberOfFaces { get; set; }
         public int Multiplier { get; set; }
-        public string MultiplierAsString { get; set; }
+        public string MultiplierAsString { get; set; } = "0";
 
         public List<int> RollAllDice()
         {          
@@ -63,12 +63,12 @@ namespace dungeons_and_discord.Modules.DiceRoller
 
         public int GetMultiplier()
         {
-            if (!MultiplierAsString.Any())
+            if(!int.TryParse(MultiplierAsString, out int multiplier))
             {
-                return 0;
+                multiplier = 0;
             }
 
-            return int.Parse(MultiplierAsString);
+            return multiplier;
         }
 
         public List<int> RollAbilityScore()
