@@ -23,8 +23,8 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
 
             var cardDefinition = KeyValuePair
                 .Create(
-                    Cards.Where(c => c.Id == CardId).Select(c => c.CardName).First(), 
-                    Cards.Where(c => c.Id == CardId).Select(c => c.Definition).First()
+                    Cards.Where(c => c.Id == CardId).Select(c => c.CardName).FirstOrDefault() ?? "No card found", 
+                    Cards.Where(c => c.Id == CardId).Select(c => c.Definition).FirstOrDefault() ?? "No card description found"
                  );
 
             return cardDefinition;
@@ -45,7 +45,7 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
             return cardDefinition;
         }
 
-        public int cardNumberGenerator()
+        public int CardNumberGenerator()
         {
             var result = new Random();
             var cardMinimum = 1;

@@ -16,7 +16,7 @@ namespace dungeons_and_discord.Modules.DiceRoller
 {
     public class DiceRollerCommand : ModuleBase
     {
-        DiceRollerHelper Helper = new DiceRollerHelper();
+        readonly DiceRollerHelper Helper = new DiceRollerHelper();
         
         [Command("roll")]
         public async Task RollDiceCommand([Remainder] string args)
@@ -51,9 +51,8 @@ namespace dungeons_and_discord.Modules.DiceRoller
             else
             {
                 IUser user = Context.User;
-                int multiplier;
 
-                if (int.TryParse(args, out multiplier))
+                if (int.TryParse(args, out int multiplier))
                 {
                     multiplier = 0;
                 }
@@ -72,9 +71,8 @@ namespace dungeons_and_discord.Modules.DiceRoller
             else
             {
                 IUser user = Context.User;
-                int multiplier;
 
-                if(!int.TryParse(args, out multiplier))
+                if(!int.TryParse(args, out int multiplier))
                 {
                     multiplier = 0;
                 }
@@ -124,9 +122,7 @@ namespace dungeons_and_discord.Modules.DiceRoller
 
             if (arguments.Count > 2)
             {
-                int checkMultiplier; 
-
-                if (!int.TryParse(arguments[2], out checkMultiplier))
+                if (!int.TryParse(arguments[2], out int checkMultiplier))
                 {
                     allArgumentsValid = false;
                 }

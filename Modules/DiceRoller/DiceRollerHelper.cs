@@ -47,7 +47,7 @@ namespace dungeons_and_discord.Modules.DiceRoller
                 functions.MultiplierAsString = arguments[(int)DiceRollerFunctions.Arguments.multiplier];
                 resultSum += functions.GetMultiplier();
 
-                if (!argumentHasValidSymbol(functions.MultiplierAsString[0]))
+                if (!ArgumentHasValidSymbol(functions.MultiplierAsString[0]))
                 {
                     functions.MultiplierAsString = String.Empty;
                 }
@@ -167,7 +167,7 @@ namespace dungeons_and_discord.Modules.DiceRoller
             return message.ToString();
         }
 
-        private bool argumentHasValidSymbol(char symbol)
+        private bool ArgumentHasValidSymbol(char symbol)
         {
             var allowedSymbols = new List<char> { '+', '-' };
 

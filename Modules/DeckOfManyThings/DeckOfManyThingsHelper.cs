@@ -26,11 +26,11 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
                 if (includeEffects)
                 {
                     
-                    functions.CardId = functions.cardNumberGenerator();
+                    functions.CardId = functions.CardNumberGenerator();
                     var drawnCard = functions.GetCardDefinitionById();
                     while (exclusions.Contains(drawnCard.Key))
                     {
-                        functions.CardId = functions.cardNumberGenerator();
+                        functions.CardId = functions.CardNumberGenerator();
                         drawnCard = functions.GetCardDefinitionById();
                     }                    
                      message.AppendLine($"They have drawn... **{drawnCard.Key}**");
@@ -40,11 +40,11 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
                 }
                 else
                 {
-                    functions.CardId = functions.cardNumberGenerator();
+                    functions.CardId = functions.CardNumberGenerator();
                     var drawnCard = functions.GetCardDefinitionById();
                     while (exclusions.Contains(drawnCard.Key))
                     {
-                        functions.CardId = functions.cardNumberGenerator();
+                        functions.CardId = functions.CardNumberGenerator();
                         drawnCard = functions.GetCardDefinitionById();
                     }
                     message.AppendLine($"They have drawn... **{drawnCard.Key}**");
