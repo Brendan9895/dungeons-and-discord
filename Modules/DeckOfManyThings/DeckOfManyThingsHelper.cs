@@ -16,9 +16,16 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
                                       List<string> exclusions)
         {
             DeckOfManyThingsFunctions functions = new DeckOfManyThingsFunctions();
-            var message = new StringBuilder();           
+            var message = new StringBuilder();
 
-            functions.UseExpandedDeck = useExpandedDeck;            
+            functions.CardsToDraw = cardsToDraw;
+            functions.UseExpandedDeck = useExpandedDeck;
+            functions.CardsToExclude = exclusions;
+
+            if (!functions.EnoughCardsAvailable())
+            {
+                return "There are not enough unique cards to draw!";
+            }
 
             message.AppendLine($"**{user.Mention} has drawn {cardsToDraw} from the Deck of Many Things...**");
             for(int i = 1; i <= cardsToDraw; i++)
@@ -62,11 +69,6 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
 
             functions.CardName = args;
             KeyValuePair<string, string>? definition = functions.GetCardDefinitionByName();
-
-            if (string.IsNullOrEmpty(definition.Value.Key))
-            {
-                return $"There is no card called **\"{args}\"**. Please check you have typed the name correctly and try again.";
-            }
 
             message.AppendLine($"__***{definition.Value.Key}***__");
             message.AppendLine($"*{definition.Value.Value}*");

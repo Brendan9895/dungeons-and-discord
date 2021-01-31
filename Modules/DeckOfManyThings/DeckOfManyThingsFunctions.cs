@@ -9,10 +9,12 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
 {
     public class DeckOfManyThingsFunctions
     {
+        public int CardsToDraw { get; set; } = 1;
         public int CardId { get; set; }
         public string CardName { get; set; } = string.Empty;
         public string Description { get; set; }
         public bool UseExpandedDeck { get; set; }
+        public List<string> CardsToExclude { get; set; } = new List<string>();
         
 
         public KeyValuePair<string, string> GetCardDefinitionById()
@@ -52,6 +54,22 @@ namespace dungeons_and_discord.Modules.DeckOfManyThings
             var cardMaximum = UseExpandedDeck ? 23 : 15;
 
             return result.Next(cardMinimum, cardMaximum);
+        }
+
+        public bool EnoughCardsAvailable()
+        {
+            int maxDrawAmount;
+
+            if (UseExpandedDeck)
+            {
+                maxDrawAmount = 23 - CardsToExclude.Count;
+            }
+            else
+            {
+                maxDrawAmount = 15 - CardsToExclude.Count;
+            }
+            
+            return CardsToDraw < maxDrawAmount;
         }
 
         private class Card
