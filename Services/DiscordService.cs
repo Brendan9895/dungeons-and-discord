@@ -31,7 +31,6 @@ namespace dungeons_and_discord.Services
             SubscribeDiscordEvents();
         }
 
-        /* Initialize the Discord Client. */
         public async Task InitializeAsync()
         {
             await InitializeGlobalDataAsync();
@@ -44,7 +43,6 @@ namespace dungeons_and_discord.Services
             await Task.Delay(-1);
         }
 
-        /* Hook Any Client Events Up Here. */
         private void SubscribeLavaLinkEvents()
         {
             _lavaNode.OnLog += LogAsync;
@@ -62,7 +60,6 @@ namespace dungeons_and_discord.Services
             await _globalData.InitializeAsync();
         }
 
-        /* Used when the Client Fires the ReadyEvent. */
         private async Task ReadyAsync()
         {
             try
@@ -77,14 +74,11 @@ namespace dungeons_and_discord.Services
 
         }
 
-        /*Used whenever we want to log something to the Console. 
-            Todo: Hook in a Custom LoggingService. */
         private async Task LogAsync(LogMessage logMessage)
         {
             await LoggingService.LogAsync(logMessage.Source, logMessage.Severity, logMessage.Message);
         }
 
-        /* Configure our Services for Dependency Injection. */
         private ServiceProvider ConfigureServices()
         {
             return new ServiceCollection()
